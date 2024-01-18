@@ -108,7 +108,7 @@ char *div_error(int line_number, int zero_error)
 		
 	msg = malloc(msglen + sizeof(int) + 1);
 	if (zero_error == 0)
-		sprintf(msg, "L%d: can't div, stack too short\n", line_number);
+		sprintf(msg, "L%d: can't %s, stack too short\n", line_number, g.opname);
 	else
 		sprintf(msg, "L%d: division by zero\n", line_number);
 	return(msg);

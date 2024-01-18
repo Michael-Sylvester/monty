@@ -1,7 +1,6 @@
 push 21
-push 20
+push 0
 pall
 mod
 pint
-
-mul
+mod

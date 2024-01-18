@@ -116,7 +116,12 @@ void mod(stack_t **stack, unsigned int line_number)
     if ( *stack == NULL || (*stack)->next == NULL)
 	{
 		delete_all(stack);
-        p_exit(two_node_error(line_number), 1);
+        p_exit(div_error(line_number, 0), 1);
+    }
+    else if ((*stack)->n == 0)
+    {
+        delete_all(stack);
+        p_exit(div_error(line_number, 1), 1);
     }
     pop(stack, line_number);
     (*stack)->n %= g.ndata;
