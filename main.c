@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
 		parse_line(line);
 		execute_opcode(linecount, opcodes, &head);
 	}
+	delete_all(&head);
 	fclose(file);
 	return (0);
 }

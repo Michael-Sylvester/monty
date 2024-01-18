@@ -58,6 +58,7 @@ void initialise_globals();
 char *instruct_error_msg(int line_number);
 void execute_opcode(int linecount, instruction_t *opcodes, stack_t **stack);
 void parse_line(char *line);
+void delete_all(stack_t **head);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
