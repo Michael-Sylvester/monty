@@ -69,7 +69,6 @@ void pint(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL)
 	{
-		delete_all(stack);
 		p_exit(pint_error(line_number), 1);
 	}
 	sprintf(temp, "%d", (*stack)->n);
@@ -90,7 +89,6 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	if (temp == NULL)
 	{
-		delete_all(stack);
 		p_exit(pop_error(line_number), 1);
 	}
 	g.ndata = (*stack)->n;
