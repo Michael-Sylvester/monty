@@ -16,7 +16,7 @@ void push(stack_t **stack, unsigned int line_number)
 	if (g.data != NULL)
 		temp->n = atoi(g.data);
 	else
-		p_exit(instruct_error_msg(line_number), 1);
+		p_exit(push_error(line_number), 1);
 
 	temp->next = *stack;
 	temp->prev = NULL;
@@ -37,18 +37,18 @@ void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 
-        if (*stack == NULL)
-			return;
+    if (*stack == NULL)
+		return;
 
-        printf("%d\n", (*stack)->n);
-        temp = (*stack)->next;
+    printf("%d\n", (*stack)->n);
+    temp = (*stack)->next;
 
-        while (temp != NULL)
-        {
-                printf("%d\n", temp->n);
-                temp = temp->next;
-        }
-		line_number++;
+    while (temp != NULL)
+    {
+        printf("%d\n", temp->n);
+        temp = temp->next;
+    }
+	line_number++;
 }
 
 /**
@@ -61,6 +61,8 @@ void pint(stack_t **stack, unsigned int line_number)
 {
 	char temp[10];
 
+	if (*stack == NULL)
+		p_exit(pint_error(line_number), 1);
 	sprintf(temp, "%d", (*stack)->n);
 	g.data = temp;
 	printf("%s\n", g.data);
@@ -78,7 +80,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	stack_t *temp = *stack;
 	char str[10];
 	if (temp == NULL)
-		return;
+		p_exit(pop_error(line_number), 1);
 	sprintf(str, "%d", (*stack)->n);
 	g.data = str;
 	*stack = temp->next;

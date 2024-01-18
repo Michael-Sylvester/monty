@@ -31,3 +31,51 @@ char *instruct_error_msg(int line_number)
 
 	return (msg);
 }
+
+/**
+ *push_error - error message for wrong syntax push
+ *@line_number: the line the error was found on
+ *
+ *Return: the error message
+ */
+char *push_error(int line_number)
+{
+	char *msg = NULL;
+	int msglen = strlen("L: usage: push integer\n");
+
+	msg = malloc(msglen + 1);
+	sprintf(msg, "L%d: usage: push integer\n", line_number);
+	return(msg);
+}
+/**
+ *pint_error - error message for wrong syntax pint
+ *@line_number: the line the error was found on
+ *
+ *Return: the error message
+ */
+char *pint_error(int line_number)
+{
+	char *msg = NULL;
+	int msglen = strlen("L: can't pint, stack empty\n");
+
+	msg = malloc(msglen + 1);
+	sprintf(msg, "L%d: can't pint, stack empty\n", line_number);
+	return(msg);
+}
+
+/**
+ *pop_error - error message for wrong syntax pop
+ *@line_number: the line the error was found on
+ *
+ *Return: the error message
+ */
+char *pop_error(int line_number)
+{
+	char *msg = NULL;
+	int msglen = strlen("L: can't pop an empty stack\n");
+
+	msg = malloc(msglen + 1);
+	sprintf(msg, "L%d: can't pop an empty stack\n", line_number);
+	return(msg);
+}
+

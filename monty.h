@@ -52,10 +52,13 @@ typedef struct instruction_s
 
 extern global_t g;
 FILE *open_file(char *filepath);
+char *instruct_error_msg(int line_number);
 void p_exit(char *error_str, int freecheck);
+char *push_error(int line_number);
+char *pint_error(int line_number);
+char *pop_error(int line_number);
 void initialise(instruction_t *opcodes);
 void initialise_globals();
-char *instruct_error_msg(int line_number);
 void execute_opcode(int linecount, instruction_t *opcodes, stack_t **stack);
 void parse_line(char *line);
 void delete_all(stack_t **head);
