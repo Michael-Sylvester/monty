@@ -109,3 +109,36 @@ char *add_error(int line_number)
 	sprintf(msg, "L%d: can't add, stack too short\n", line_number);
 	return(msg);
 }
+/**
+ *sub_error - error message for less than 2 nodes in stack
+ *@line_number: the line the error was found on
+ *
+ *Return: the error message
+ */
+char *sub_error(int line_number)
+{
+	char *msg = NULL;
+	int msglen = strlen("L: can't sub, stack too short\n");
+
+	msg = malloc(msglen + sizeof(int) + 1);
+	sprintf(msg, "L%d: can't sub, stack too short\n", line_number);
+	return(msg);
+}
+/**
+ *div_error - error message for less than 2 nodes in stack or first node is 0
+ *@line_number: the line the error was found on
+ *
+ *Return: the error message
+ */
+char *div_error(int line_number, int zero_error)
+{
+	char *msg = NULL;
+	int msglen = strlen("L: can't div, stack too short\n");
+		
+	msg = malloc(msglen + sizeof(int) + 1);
+	if (zero_error == 0)
+		sprintf(msg, "L%d: can't sub, stack too short\n", line_number);
+	else
+		sprintf(msg, "L%d division by zero\n", line_number);
+	return(msg);
+}

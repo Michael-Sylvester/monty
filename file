@@ -1,5 +1,11 @@
-push 20
 push 100
+push 20
 pall
-add
+div
+pint
+push 5
 pall
+sub
+pint
+push 0
+div

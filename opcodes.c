@@ -96,3 +96,14 @@ void pop(stack_t **stack, unsigned int line_number)
 	*stack = temp->next;
 	free(temp);
 }
+/**
+ *nop - does nothing
+ *@stack: pointer to head  of  stack
+ *@line_number: position in file
+ *Return: nothing
+ */
+void nop(stack_t **stack, unsigned int line_number)
+{
+    stack += 0;
+    line_number += 0;
+}
