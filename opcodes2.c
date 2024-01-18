@@ -20,9 +20,8 @@ void swap(stack_t **stack, unsigned int line_number)
     sprintf(c_num1, "%d", g.ndata);
     g.data = c_num1;
     push(stack, line_number);
+    free(c_num1);
     
-    free(g.data);
-    g.data = NULL;
 }
 void add(stack_t **stack, unsigned int line_number)
 {

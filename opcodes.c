@@ -65,16 +65,15 @@ void pall(stack_t **stack, unsigned int line_number)
  */
 void pint(stack_t **stack, unsigned int line_number)
 {
-	char temp[10];
+	int temp = 0;
 
 	if (*stack == NULL)
 	{
+		delete_all(stack);
 		p_exit(pint_error(line_number), 1);
 	}
-	sprintf(temp, "%d", (*stack)->n);
-	strcpy(g.data, temp);
-	printf("%s\n", g.data);
-	line_number++;
+	temp = (*stack)->n;
+	printf("%d\n", temp);
 }
 
 /**
@@ -89,11 +88,11 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	if (temp == NULL)
 	{
+		delete_all(stack);
 		p_exit(pop_error(line_number), 1);
 	}
-	g.ndata = (*stack)->n;
+	g.ndata = temp->n;
 
 	*stack = temp->next;
 	free(temp);
-	line_number++;
 }

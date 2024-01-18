@@ -25,6 +25,7 @@ void delete_all(stack_t **head)
 	stack_t *temp = *head;
     stack_t *next = NULL;
 
+	free(g.data);
     if (temp != NULL)
          next = temp->next;
 	else
