@@ -12,6 +12,12 @@ void parse_line(char *line)
 
 	opname = strtok(line, " \n\t");
 	g.opname = opname;
+	if (opname != NULL && opname[0] == '#')
+	{
+		g.opname = NULL;
+		g.data = NULL;
+		return;
+	}
 	if (opname != NULL)
 	{	opdata = strtok(NULL, " \n\t");
 		g.data = opdata;
