@@ -11,13 +11,19 @@ void push(stack_t **stack, unsigned int line_number)
 	stack_t *temp = malloc(sizeof(stack_t));
 
 	if (temp == NULL)
+	{
+		delete_all(stack);
 		p_exit("Error: malloc failed", 0);
+	}
+		
 
 	if (g.data != NULL)
 		temp->n = atoi(g.data);
 	else
+	{
+		delete_all(stack);
 		p_exit(push_error(line_number), 1);
-
+	}
 	temp->next = *stack;
 	temp->prev = NULL;
 
@@ -62,7 +68,10 @@ void pint(stack_t **stack, unsigned int line_number)
 	char temp[10];
 
 	if (*stack == NULL)
+	{
+		delete_all(stack);
 		p_exit(pint_error(line_number), 1);
+	}
 	sprintf(temp, "%d", (*stack)->n);
 	strcpy(g.data, temp);
 	printf("%s\n", g.data);
@@ -80,8 +89,10 @@ void pop(stack_t **stack, unsigned int line_number)
 	stack_t *temp = *stack;
 
 	if (temp == NULL)
+	{
+		delete_all(stack);
 		p_exit(pop_error(line_number), 1);
-
+	}
 	g.ndata = (*stack)->n;
 
 	*stack = temp->next;
