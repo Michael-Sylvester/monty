@@ -64,7 +64,7 @@ void pint(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 		p_exit(pint_error(line_number), 1);
 	sprintf(temp, "%d", (*stack)->n);
-	g.data = temp;
+	strcpy(g.data, temp);
 	printf("%s\n", g.data);
 	line_number++;
 }
@@ -78,11 +78,12 @@ void pint(stack_t **stack, unsigned int line_number)
 void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
-	char str[10];
+
 	if (temp == NULL)
 		p_exit(pop_error(line_number), 1);
-	sprintf(str, "%d", (*stack)->n);
-	g.data = str;
+
+	g.ndata = (*stack)->n;
+
 	*stack = temp->next;
 	free(temp);
 	line_number++;

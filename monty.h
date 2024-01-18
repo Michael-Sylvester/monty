@@ -19,6 +19,7 @@ typedef struct global_variables
 {
 	char *data;
 	char *opname;
+	int ndata;
 } global_t;
 
 /**

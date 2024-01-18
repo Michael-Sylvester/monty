@@ -93,7 +93,7 @@ void initialise(instruction_t *opcodes)
 void execute_opcode(int linecount, instruction_t *opcodes, stack_t **stack)
 {
 	int idx = 0;
-	int no_of_opcodes = 4;
+	int no_of_opcodes = 7;
 
 	if (g.opname != NULL)
 	{

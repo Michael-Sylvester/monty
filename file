@@ -1,8 +1,5 @@
-
+push 5
+push 25
 pall
-
-push 
-  	 
-	push      4
+swap
 pall
-
