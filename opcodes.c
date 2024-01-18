@@ -77,7 +77,8 @@ void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 	char str[10];
-
+	if (temp == NULL)
+		return;
 	sprintf(str, "%d", (*stack)->n);
 	g.data = str;
 	*stack = temp->next;
