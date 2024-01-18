@@ -129,7 +129,7 @@ void mod(stack_t **stack, unsigned int line_number)
 }
 
 /**
- *pchar - subtracts the top 2 nodes and saves it in the 2nd
+ *pchar - prints the ascii value of the node at the top
  *@stack: pointer to head  of  stack
  *@line_number: position in file
  *Return: nothing
@@ -150,4 +150,30 @@ void pchar(stack_t **stack, unsigned int line_number)
         p_exit(out_range_error(line_number), 1);
     }
 	printf("%c\n", num);
+}
+
+/**
+ *pstr - prints ascii values of all nodes in the stack
+ *@stack: pointer to head  of  stack
+ *@line_number: position in file
+ *Return: nothing
+ */
+void pstr(stack_t **stack, unsigned int line_number)
+{
+    int num = 0;
+    stack_t *temp = *stack;
+
+	if (temp == NULL)
+        printf("\n");
+
+    while (temp != NULL)
+    {
+	    num = temp->n;
+        if (num <= 0 || num > 127) 
+            break;
+        printf("%c", num);
+        temp = temp->next;
+    }
+    line_number += 0;
+	printf("\n");
 }
