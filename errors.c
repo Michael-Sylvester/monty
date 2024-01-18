@@ -48,18 +48,18 @@ char *push_error(int line_number)
 	return(msg);
 }
 /**
- *pint_error - error message for wrong syntax pint
+ *empty_stack_error - error message for wrong syntax pint
  *@line_number: the line the error was found on
  *
  *Return: the error message
  */
-char *pint_error(int line_number)
+char *empty_stack_error(int line_number)
 {
 	char *msg = NULL;
 	int msglen = strlen("L: can't pint, stack empty\n");
 
 	msg = malloc(msglen + sizeof(int) + 1);
-	sprintf(msg, "L%d: can't pint, stack empty\n", line_number);
+	sprintf(msg, "L%d: can't %s, stack empty\n", line_number, g.opname);
 	return(msg);
 }
 
@@ -111,5 +111,21 @@ char *div_error(int line_number, int zero_error)
 		sprintf(msg, "L%d: can't %s, stack too short\n", line_number, g.opname);
 	else
 		sprintf(msg, "L%d: division by zero\n", line_number);
+	return(msg);
+}
+
+/**
+ *out_range_error - error message for less than 2 nodes in stack
+ *@line_number: the line the error was found on
+ *
+ *Return: the error message
+ */
+char *out_range_error(int line_number)
+{
+	char *msg = NULL;
+	int msglen = strlen("L: can't pchar, value out of range\n");
+
+	msg = malloc(msglen + sizeof(int) + 1);
+	sprintf(msg, "L%d: can't %s, value out of range\n", line_number, g.opname);
 	return(msg);
 }

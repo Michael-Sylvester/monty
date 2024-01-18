@@ -127,3 +127,27 @@ void mod(stack_t **stack, unsigned int line_number)
     (*stack)->n %= g.ndata;
     
 }
+
+/**
+ *pchar - subtracts the top 2 nodes and saves it in the 2nd
+ *@stack: pointer to head  of  stack
+ *@line_number: position in file
+ *Return: nothing
+ */
+void pchar(stack_t **stack, unsigned int line_number)
+{
+    int num = 0;
+
+	if (*stack == NULL)
+	{
+		p_exit(empty_stack_error(line_number), 1);
+	}
+	num = (*stack)->n;
+
+    if (num < 0 || num > 127)
+    {
+        delete_all(stack);
+        p_exit(out_range_error(line_number), 1);
+    }
+	printf("%c\n", num);
+}

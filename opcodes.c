@@ -69,8 +69,7 @@ void pint(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL)
 	{
-		delete_all(stack);
-		p_exit(pint_error(line_number), 1);
+		p_exit(empty_stack_error(line_number), 1);
 	}
 	temp = (*stack)->n;
 	printf("%d\n", temp);

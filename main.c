@@ -9,7 +9,7 @@ global_t g;
  */
 int main(int argc, char *argv[])
 {
-	instruction_t opcodes[11];
+	instruction_t opcodes[12];
 	char line[250];
 	int linecount = 0;
 	stack_t *head = NULL;
@@ -71,11 +71,11 @@ void initialise_globals()
 void initialise(instruction_t *opcodes)
 {
 	int idx = 0;
-	const int no_of_opcodes = 11;
-	char *oplist[11] = {"push", "pall", "pint", "pop", "swap", "add", 
-	"nop", "sub", "div", "mul", "mod"};
-	void (*opfuncs[11])(stack_t **stack, unsigned int line_number) = {push, 
-	pall, pint, pop, swap, add, nop, sub, divide, mul, mod};
+	const int no_of_opcodes = 12;
+	char *oplist[12] = {"push", "pall", "pint", "pop", "swap", "add", 
+	"nop", "sub", "div", "mul", "mod", "pchar"};
+	void (*opfuncs[12])(stack_t **stack, unsigned int line_number) = {push, 
+	pall, pint, pop, swap, add, nop, sub, divide, mul, mod, pchar};
 	/* 9 opcodes so far */
 	for (idx = 0; idx < no_of_opcodes; idx++)
 	{
@@ -94,7 +94,7 @@ void initialise(instruction_t *opcodes)
 void execute_opcode(int linecount, instruction_t *opcodes, stack_t **stack)
 {
 	int idx = 0;
-	const int no_of_opcodes = 11;
+	const int no_of_opcodes = 12;
 
 	if (g.opname != NULL)
 	{

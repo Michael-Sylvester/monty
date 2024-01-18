@@ -1,6 +1,9 @@
-push 21
+
+pchar
 push 0
-pall
+pchar
+push 200
+pchar
 #mod
 
      #mod

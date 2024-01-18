@@ -56,14 +56,11 @@ FILE *open_file(char *filepath);
 char *instruct_error_msg(int line_number);
 void p_exit(char *error_str, int freecheck);
 char *push_error(int line_number);
-char *pint_error(int line_number);
+char *empty_stack_error(int line_number);
 char *pop_error(int line_number);
-
+char *out_range_error(int line_number);
 char *two_node_error(int line_number);
-char *swap_error(int line_number);
-char *add_error(int line_number);
-char *sub_error(int line_number);
-char *mul_error(int line_number);
+
 char *div_error(int line_number, int zero_error);
 void initialise(instruction_t *opcodes);
 void initialise_globals();
@@ -81,4 +78,5 @@ void sub(stack_t **stack, unsigned int line_number);
 void divide(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
 #endif
