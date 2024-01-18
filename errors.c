@@ -142,3 +142,19 @@ char *div_error(int line_number, int zero_error)
 		sprintf(msg, "L%d: division by zero\n", line_number);
 	return(msg);
 }
+
+/**
+ *mul_error - error message for less than 2 nodes in stack
+ *@line_number: the line the error was found on
+ *
+ *Return: the error message
+ */
+char *mul_error(int line_number)
+{
+	char *msg = NULL;
+	int msglen = strlen("L: can't mul, stack too short\n");
+
+	msg = malloc(msglen + sizeof(int) + 1);
+	sprintf(msg, "L%d: can't mul, stack too short\n", line_number);
+	return(msg);
+}

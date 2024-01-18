@@ -1,10 +1,10 @@
-push 100
+push 10
 push 20
 pall
-div
+mul
 pint
-push 5
+push -5
 pall
-div
+mul
 pint
-div
+mul

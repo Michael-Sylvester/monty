@@ -86,3 +86,21 @@ void divide(stack_t **stack, unsigned int line_number)
     (*stack)->n /= g.ndata;
     
 }
+
+/**
+ *mul - subtracts the top 2 nodes and saves it in the 2nd
+ *@stack: pointer to head  of  stack
+ *@line_number: position in file
+ *Return: nothing
+ */
+void mul(stack_t **stack, unsigned int line_number)
+{
+    if ( *stack == NULL || (*stack)->next == NULL)
+	{
+		delete_all(stack);
+        p_exit(mul_error(line_number), 1);
+    }
+    pop(stack, line_number);
+    (*stack)->n *= g.ndata;
+    
+}
