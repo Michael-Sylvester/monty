@@ -5,7 +5,6 @@ div
 pint
 push 5
 pall
-sub
+div
 pint
-push 0
 div
