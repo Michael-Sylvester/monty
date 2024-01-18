@@ -7,13 +7,11 @@
  */
 void p_exit(char *error_str, int freecheck)
 {
-	int len = strlen(error_str);
-
 	if (error_str != NULL)
 		fprintf(stderr, "%s", error_str);
 	if (freecheck == 1)
 		free(error_str);
-	//exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 /**

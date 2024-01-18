@@ -48,6 +48,7 @@ void pall(stack_t **stack, unsigned int line_number)
                 printf("%d\n", temp->n);
                 temp = temp->next;
         }
+		line_number++;
 }
 
 /**
@@ -63,6 +64,7 @@ void pint(stack_t **stack, unsigned int line_number)
 	sprintf(temp, "%d", (*stack)->n);
 	g.data = temp;
 	printf("%s\n", g.data);
+	line_number++;
 }
 
 /**
@@ -80,4 +82,5 @@ void pop(stack_t **stack, unsigned int line_number)
 	g.data = str;
 	*stack = temp->next;
 	free(temp);
+	line_number++;
 }

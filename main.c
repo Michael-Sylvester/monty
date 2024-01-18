@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 		p_exit("USAGE: monty file\n", 0);
-		initialise_globals();
+	initialise_globals();
 	file = open_file(argv[1]);
 	initialise(opcodes);
 	while (fgets(line, sizeof(line), file) != NULL)
@@ -98,7 +98,6 @@ void execute_opcode(int linecount, instruction_t *opcodes, stack_t **stack)
 	{
 		while (idx < no_of_opcodes)
 		{
-			//printf("%s len: %ld\n", g.opname, (g.opname == NULL ? 0 : strlen(g.opname)) );
 			if (strcmp(g.opname, opcodes[idx].opcode) == 0)
 			{
 				opcodes[idx].f(stack, linecount);
