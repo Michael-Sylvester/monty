@@ -13,7 +13,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	{
 		delete_all(stack);
         free(c_num1);
-        p_exit(swap_error(line_number), 1);
+        p_exit(two_node_error(line_number), 1);
     }
     pop(stack, line_number);
     sprintf(c_num1, "%d", g.ndata);
@@ -40,7 +40,7 @@ void add(stack_t **stack, unsigned int line_number)
     if ( *stack == NULL || (*stack)->next == NULL)
 	{
 		delete_all(stack);
-        p_exit(add_error(line_number), 1);
+        p_exit(two_node_error(line_number), 1);
     }
     pop(stack, line_number);
     (*stack)->n += g.ndata;
@@ -57,7 +57,7 @@ void sub(stack_t **stack, unsigned int line_number)
     if ( *stack == NULL || (*stack)->next == NULL)
 	{
 		delete_all(stack);
-        p_exit(sub_error(line_number), 1);
+        p_exit(two_node_error(line_number), 1);
     }
     pop(stack, line_number);
     (*stack)->n -= g.ndata;
@@ -98,9 +98,27 @@ void mul(stack_t **stack, unsigned int line_number)
     if ( *stack == NULL || (*stack)->next == NULL)
 	{
 		delete_all(stack);
-        p_exit(mul_error(line_number), 1);
+        p_exit(two_node_error(line_number), 1);
     }
     pop(stack, line_number);
     (*stack)->n *= g.ndata;
+    
+}
+
+/**
+ *mod - subtracts the top 2 nodes and saves it in the 2nd
+ *@stack: pointer to head  of  stack
+ *@line_number: position in file
+ *Return: nothing
+ */
+void mod(stack_t **stack, unsigned int line_number)
+{
+    if ( *stack == NULL || (*stack)->next == NULL)
+	{
+		delete_all(stack);
+        p_exit(two_node_error(line_number), 1);
+    }
+    pop(stack, line_number);
+    (*stack)->n %= g.ndata;
     
 }

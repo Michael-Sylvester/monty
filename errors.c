@@ -80,50 +80,21 @@ char *pop_error(int line_number)
 }
 
 /**
- *swap_error - error message for less than 2 nodes in stack
+ *two_node_error - error message for less than 2 nodes in stack
  *@line_number: the line the error was found on
  *
  *Return: the error message
  */
-char *swap_error(int line_number)
+char *two_node_error(int line_number)
 {
 	char *msg = NULL;
 	int msglen = strlen("L: can't swap, stack too short\n");
 
 	msg = malloc(msglen + sizeof(int) + 1);
-	sprintf(msg, "L%d: can't swap, stack too short\n", line_number);
+	sprintf(msg, "L%d: can't %s, stack too short\n", line_number, g.opname);
 	return(msg);
 }
-/**
- *add_error - error message for less than 2 nodes in stack
- *@line_number: the line the error was found on
- *
- *Return: the error message
- */
-char *add_error(int line_number)
-{
-	char *msg = NULL;
-	int msglen = strlen("L: can't add, stack too short\n");
 
-	msg = malloc(msglen + sizeof(int) + 1);
-	sprintf(msg, "L%d: can't add, stack too short\n", line_number);
-	return(msg);
-}
-/**
- *sub_error - error message for less than 2 nodes in stack
- *@line_number: the line the error was found on
- *
- *Return: the error message
- */
-char *sub_error(int line_number)
-{
-	char *msg = NULL;
-	int msglen = strlen("L: can't sub, stack too short\n");
-
-	msg = malloc(msglen + sizeof(int) + 1);
-	sprintf(msg, "L%d: can't sub, stack too short\n", line_number);
-	return(msg);
-}
 /**
  *div_error - error message for less than 2 nodes in stack or first node is 0
  *@line_number: the line the error was found on
@@ -140,21 +111,5 @@ char *div_error(int line_number, int zero_error)
 		sprintf(msg, "L%d: can't div, stack too short\n", line_number);
 	else
 		sprintf(msg, "L%d: division by zero\n", line_number);
-	return(msg);
-}
-
-/**
- *mul_error - error message for less than 2 nodes in stack
- *@line_number: the line the error was found on
- *
- *Return: the error message
- */
-char *mul_error(int line_number)
-{
-	char *msg = NULL;
-	int msglen = strlen("L: can't mul, stack too short\n");
-
-	msg = malloc(msglen + sizeof(int) + 1);
-	sprintf(msg, "L%d: can't mul, stack too short\n", line_number);
 	return(msg);
 }

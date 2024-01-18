@@ -58,6 +58,8 @@ void p_exit(char *error_str, int freecheck);
 char *push_error(int line_number);
 char *pint_error(int line_number);
 char *pop_error(int line_number);
+
+char *two_node_error(int line_number);
 char *swap_error(int line_number);
 char *add_error(int line_number);
 char *sub_error(int line_number);
@@ -78,4 +80,5 @@ void nop(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
 void divide(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
 #endif
