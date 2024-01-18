@@ -59,6 +59,7 @@ char *push_error(int line_number);
 char *pint_error(int line_number);
 char *pop_error(int line_number);
 char *swap_error(int line_number);
+char *add_error(int line_number);
 void initialise(instruction_t *opcodes);
 void initialise_globals();
 void execute_opcode(int linecount, instruction_t *opcodes, stack_t **stack);

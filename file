@@ -1,5 +1,5 @@
 push 20
 push 100
 pall
-swap
+add
 pall

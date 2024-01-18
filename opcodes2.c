@@ -25,8 +25,14 @@ void swap(stack_t **stack, unsigned int line_number)
 }
 void add(stack_t **stack, unsigned int line_number)
 {
-    stack++;
-    line_number++;
+    if ( *stack == NULL || (*stack)->next == NULL)
+	{
+		delete_all(stack);
+        p_exit(add_error(line_number), 1);
+    }
+    pop(stack, line_number);
+    (*stack)->n += g.ndata;
+    
 }
 void nop(stack_t **stack, unsigned int line_number)
 {

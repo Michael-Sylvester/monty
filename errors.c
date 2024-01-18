@@ -94,3 +94,18 @@ char *swap_error(int line_number)
 	sprintf(msg, "L%d: can't swap, stack too short\n", line_number);
 	return(msg);
 }
+/**
+ *add_error - error message for less than 2 nodes in stack
+ *@line_number: the line the error was found on
+ *
+ *Return: the error message
+ */
+char *add_error(int line_number)
+{
+	char *msg = NULL;
+	int msglen = strlen("L: can't add, stack too short\n");
+
+	msg = malloc(msglen + sizeof(int) + 1);
+	sprintf(msg, "L%d: can't add, stack too short\n", line_number);
+	return(msg);
+}
