@@ -1,4 +1,5 @@
 #include "monty.h"
+global_t g;
 
 /**
  *main - Controles all functions calls for interpreter
@@ -9,49 +10,103 @@
 int main(int argc, char *argv[])
 {
 	instruction_t opcodes[7];
+	char line[250];
+	int linecount = 0;
 	stack_t *head = NULL;
-	FILE *file;
-	
+	FILE *file = NULL;
+
 	if (argc != 2)
-		p_exit("USAGE: monty file\n");
+		p_exit("USAGE: monty file\n", 0);
+		initialise_globals();
 	file = open_file(argv[1]);
+	initialise(opcodes);
+	while (fgets(line, sizeof(line), file) != NULL)
+	{
+		linecount++;
+		parse_line(line);
+		execute_opcode(linecount, opcodes, &head);
+	}
 	fclose(file);
 	return (0);
 }
 
-/**
- *p_exit - Printd exit message to std err and exits
- *@error_str: the error string to be printed
- *Return: nothing
- */
-void p_exit(char *error_str)
-{
-	int len = strlen(error_str);
-
-	if (error_str != NULL)
-		fprintf(stderr, "%s", error_str);
-	exit (EXIT_FAILURE);
-}
 
 /**
  *open_file - Printd exit message to std err and exits
  *@filepath: path to the file to be opened
- *@file: the File variable for holding the open file
  *Return: the opened file
  */
 FILE *open_file(char *filepath)
 {
-	char *error_msg = malloc(strlen("Error: Can't open file ") + strlen(filepath) + 2);
+	int path_len = strlen(filepath);
+	int msg_len = strlen("Error: Can't open file ");
+	char *error_msg = malloc(msg_len + path_len + 2);
 	FILE *file = fopen(filepath, "r");
 
 	if (file == NULL)
 	{
 		if (error_msg == NULL)
-			p_exit("Error: malloc failed");
+			p_exit("Error: malloc failed", 0);
 		strcpy(error_msg, "Error: Can't open file ");
 		strcat(error_msg, filepath);
 		strcat(error_msg, "\n");
-		p_exit(error_msg);
+		p_exit(error_msg, 1);
 	}
+	free(error_msg);
 	return (file);
+}
+
+void initialise_globals()
+{
+	g.data = NULL;
+	g.opname = NULL;
+}
+
+/**
+ *initialise - create tstacke functions for eacstack of tstacke opcodes
+ *@opcodes: double pointer to array in main
+ *Return: notstacking
+ */
+void initialise(instruction_t *opcodes)
+{
+	int idx = 0;
+	int no_of_opcodes = 7;
+	char *oplist[7] = {"push", "pall", "pint", "pop", "swap", "add", "nop"};
+	void (*opfuncs[7])(stack_t **stack, unsigned int line_number) = {push, 
+	pall, pint, pop, swap, add, nop};
+	/* 7 opcodes so far */
+	for (idx = 0; idx < no_of_opcodes; idx++)
+	{
+		opcodes[idx].opcode = oplist[idx];
+		opcodes[idx].f = opfuncs[idx];
+	}
+}
+
+/**
+ *execute_opcode - will devide opcode into intruction and arg
+ *@linecount: the position the opcode was in the file
+ *@opcodes: array of all opcode names and functions
+ *@stack: double array to head of stack
+ *Return: nothing
+ */
+void execute_opcode(int linecount, instruction_t *opcodes, stack_t **stack)
+{
+	int idx = 0;
+	int no_of_opcodes = 4;
+
+	if (g.opname != NULL)
+	{
+		while (idx < no_of_opcodes)
+		{
+			//printf("%s len: %ld\n", g.opname, (g.opname == NULL ? 0 : strlen(g.opname)) );
+			if (strcmp(g.opname, opcodes[idx].opcode) == 0)
+			{
+				opcodes[idx].f(stack, linecount);
+				break;
+			}
+			idx++;
+		}
+		if (idx >= no_of_opcodes)
+			p_exit(instruct_error_msg(linecount), 1);
+	}
 }

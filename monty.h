@@ -8,12 +8,25 @@
 #include <string.h>
 
 /**
+ * global_variables - values read from the input file
+ * @g.data: the input data
+ * @g.opname: the input opcode
+ *
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO
+ */
+typedef struct global_variables
+{
+	char *data;
+	char *opname;
+} global_t;
+
+/**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
  * @prev: points to the previous element of the stack (or queue)
  * @next: points to the next element of the stack (or queue)
- *
- * Description: doubly linked list node structure
+ * * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO
  */
 typedef struct stack_s
@@ -37,8 +50,19 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-
+extern global_t g;
 FILE *open_file(char *filepath);
-void p_exit(char *error_str);
-
+void p_exit(char *error_str, int freecheck);
+void initialise(instruction_t *opcodes);
+void initialise_globals();
+char *instruct_error_msg(int line_number);
+void execute_opcode(int linecount, instruction_t *opcodes, stack_t **stack);
+void parse_line(char *line);
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
 #endif
